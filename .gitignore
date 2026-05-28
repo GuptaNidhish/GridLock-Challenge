@@ -4,3 +4,8 @@ notebooks/.virtual_documents
 notebooks/.ipynb_checkpoints
 *.zip
 .venv/
+notebooks_abhishek/.ipynb_checkpoints
+notebooks_abhishek/dataset
+/.virtual_documents
+/anaconda_projects
+catboost_info/
