@@ -1,0 +1,31 @@
+Approach
+
+1. Overview
+the goal is to predict traffic demand using catboost regressor which is great at handling category data and prevents overfitting easily
+
+2. Tools used
+    a.The solution uses python with pandas and numpy for data handling
+    b.Ctboost is used for the main machine learning algorithm
+    c.Scikit learn is used for cross validation and r2 metric calculation
+
+3. Data preprocessing and features
+    a.We parse the timestamp to get hour and minute
+    b.We calculate time in mins by multiplying the hour by 60 and adding minute
+    c.We calculate day of week using modulo 7 on the day column
+    d.We create a binary feature called is weekend if the day of week is 5 or 6
+    e.We fill empty spots in categories like road type weather landmarks and large vehicles with the word unknown
+for numbers like temperature and number of lanes we fill missing spots with their mean
+
+4. Validation and training
+    a.We use a 5 fold cross validation to train the model on 80 percent of data and validate on 20 percent each time
+    b.The catboost regressor is trained with 4000 iterations depth of 8 and early stopping of 150 rounds to stop learning when validation score stops improving 
+    c.The predictions from all 5 folds are grouped and averaged this helps lower the chances of random errors
+
+5. Output generation
+    a.Since demand cannot be negative we use numpy clip to change any negative prediction strictly to 0
+    b.This result is saved to the final submission file mapping index to the predicted demand
+
+6 files used
+    a.We used the train csv and test csv inside the dataset folder
+    b.Our complete pipeline runs in main ipynb under notebooks folder
+    c.The generated results sit in submission csv
