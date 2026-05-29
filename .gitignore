@@ -9,3 +9,4 @@ notebooks_abhishek/dataset
 /.virtual_documents
 /anaconda_projects
 catboost_info/
+.ipynb_checkpoints
